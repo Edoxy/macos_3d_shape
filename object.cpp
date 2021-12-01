@@ -51,15 +51,15 @@ double Sphere::intersect(const Ray &ray) const
     // {
     //     cout << "on sphere" << endl;
     // }
-    
+
     if (abs(res1) < abs(res2))
     {
         return res1;
-    }else
+    }
+    else
     {
         return res2;
     }
-
 }
 
 Point3d Sphere::normal(const Point3d &p) const
@@ -143,4 +143,29 @@ Point3d Cube::normal(const Point3d &p) const
         normal.to_versor();
     }
     return normal;
+}
+
+Square::Square() : Object()
+{
+    radius = 1;
+}
+
+Square::Square(Point3d p, float r) : Object(p)
+{
+    radius = r;
+}
+
+double Square::intersect(const Ray &ray) const
+{
+    float d = (position.get_z() - ray.get_point().get_z()) / ray.get_tan().get_z();
+    if((ray.get_from_distance(d) - position).norm_inf() > radius )
+    {
+        d = NAN;
+    }
+    return d;
+}
+
+Point3d Square::normal(const Point3d &p) const
+{
+    return Point3d(0, 0, 1);
 }

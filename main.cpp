@@ -64,32 +64,22 @@ int main()
 {
 
     fputs("\e[?25l", stdout);
-
-    // Sphere s1(Point3d(0, 0, 0), 1);
-    // Sphere s2(Point3d(2, 1.5, 0), 1);
-    // Cube c1(Point3d(2, 0, 0), 0.5);
-    // Cube c2(Point3d(0, 2, 0), 1);
     Scene scene;
-    // scene.add_obj(&s1);
-    // scene.add_obj(&s2);
-    // scene.add_obj(&c1);
-    // scene.add_obj(&c2);
+    // Scena Podio
+    // scene.add_obj(new Sphere(Point3d(0, 0, 1), 0.5));
+    // scene.add_obj(new Sphere(Point3d(1, 0, 0), 0.5));
+    // scene.add_obj(new Cube(Point3d(0, 0, 0), 0.5));
+    // scene.add_obj(new Cube(Point3d(0, 0, -1), 0.5));
+    // scene.add_obj(new Cube(Point3d(1, 0, -1), 0.5));
+    // scene.add_obj(new Sphere(Point3d(-1, 0, -1), 0.5));
+    // scene.add_obj(new Square(Point3d(0, 0, -1.5), 5));
 
-    scene.add_obj(new Cube(Point3d(0.75, 0, 0), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.75, 0, 0), 0.25));
-    scene.add_obj(new Cube(Point3d(0.75, 0, 0.5), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.75, 0, 0.5), 0.25));
-    scene.add_obj(new Cube(Point3d(0.75, 0, -0.5), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.75, 0, -0.5), 0.25));
-    scene.add_obj(new Cube(Point3d(0.75, 0, 1), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.75, 0, 1), 0.25));
-    scene.add_obj(new Cube(Point3d(0.75, 0, -1), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.75, 0, -1), 0.25));
-    scene.add_obj(new Cube(Point3d(0.25, 0, 1.5), 0.25));
-    scene.add_obj(new Cube(Point3d(0.25, 0, -1.5), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.25, 0, 1.5), 0.25));
-    scene.add_obj(new Cube(Point3d(-0.25, 0, -1.5), 0.25));
-    scene.add_obj(new Sphere(Point3d(0, 0, 0), 0.5));
+    //Scena Semplice dimostrazione luci e piano
+    scene.add_obj(new Sphere(Point3d(0, 0, 0.5), 0.5));
+    scene.add_obj(new Sphere(Point3d(-2, 2, 2), 0.2));
+    scene.add_obj(new Sphere(Point3d(-1, 1, 2), 0.3));
+    scene.add_obj(new Cube(Point3d(1, 0, 0.5), 0.5));
+    scene.add_obj(new Square(Point3d(0, 0, 0), 3));
     
 
 
@@ -107,7 +97,7 @@ int main()
 
         display.clear();
 
-        Point3d pos(-radius * sin(t), radius * cos(t), 4-t);
+        Point3d pos(-radius * sin(t), radius * cos(t), 3);
 
         Ray tmp(pos, Point3d(0, 0, 0), true);
         Point3d dir = tmp.get_tan();

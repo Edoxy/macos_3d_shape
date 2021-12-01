@@ -18,7 +18,7 @@ public:
     void set_pos(Point3d p) { position = p; };
     void set_ref(Point3d, Point3d, Point3d);
     virtual double intersect(const Ray &) const = 0;
-    virtual Point3d normal(const Point3d&) const = 0;
+    virtual Point3d normal(const Point3d &) const = 0;
 };
 
 class Sphere : public Object
@@ -29,23 +29,38 @@ private:
 public:
     Sphere();
     Sphere(Point3d, float);
-    Sphere(const Sphere&);
+    Sphere(const Sphere &);
 
     float get_radius() const { return radius; };
     void set_radius(float r) { radius = r; };
     double intersect(const Ray &) const;
-    Point3d normal(const Point3d&) const;
+    Point3d normal(const Point3d &) const;
 };
 
 class Cube : public Object
 {
 private:
     float radius;
-    public:
+
+public:
     Cube();
     Cube(Point3d, float);
-    Cube(const Cube&);
+    Cube(const Cube &);
 
-    double intersect(const Ray&) const;
-    Point3d normal(const Point3d&) const;
+    double intersect(const Ray &) const;
+    Point3d normal(const Point3d &) const;
+};
+
+class Square : public Object
+{
+private:
+    float radius;
+    
+public:
+    Square();
+    Square(Point3d, float);
+    Square(const Square&);
+
+    double intersect(const Ray &) const;
+    Point3d normal(const Point3d &) const;
 };

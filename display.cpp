@@ -31,22 +31,22 @@ void Display::draw(Camera &cam)
         int x = int(round(p->get_x() * dim));
         int y = int(round(p->get_y() * dim));
         char c;
-        if (p->value > 0.95)
+        if (p->value > 0.96)
         {
             c = '%';
         }
-        else if (p->value > 0.7)
+        else if (p->value > 0.8)
         {
             c = '#';
         }
-        else if (p->value > 0.3)
+        else if (p->value > 0.6)
         {
             c = '@';
         }
-        else if (p->value > -0.1)
+        else if (p->value > 0.3)
         {
             c = '*';
-        }else if (p->value > -0.6)
+        }else if (p->value > 0)
         {
             c = '+';
         }
