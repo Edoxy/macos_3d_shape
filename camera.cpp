@@ -199,7 +199,7 @@ void Camera::compute_obj_view(const Object &obj)
                 Point3d p_int = r.get_from_distance(d);
                 //cout << p_int.tostring() << endl;
                 Point3d p_normal = obj.normal(p_int);
-                Point3d light(1, 1, 1);
+                Point3d light(0, 0, 0);
                 light.to_versor();
                 double light_value = light * p_normal;
                 view.push_back(new Point2d(x_i, y_i, light_value));
@@ -211,7 +211,7 @@ void Camera::compute_obj_view(const Object &obj)
 void Camera::compute_scene_view(const Scene &scene)
 {
     // check intersection for all the ray that pass from a pixel
-    const Point3d light_point(-2, 1, 5);
+    const Point3d light_point(0, 0, 9);
     const double step = 1 / double(resolution);
     for (int i = 0; i < resolution; i++)
     {

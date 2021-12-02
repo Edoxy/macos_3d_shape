@@ -81,6 +81,7 @@ Cube::Cube(Point3d p, float r) : Object(p)
 
 double Cube::intersect(const Ray &ray) const
 {
+    // da aggiungere le funzioni che permetto di ruotare i solidi e usare il riferimento salvato nell'object
     Point3d u = ray.get_tan();
     u.to_versor();
     //centro cubo

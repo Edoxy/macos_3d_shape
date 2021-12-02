@@ -15,7 +15,7 @@ private:
     Point3d normal;
     Point3d oriz;
     Point3d vert;
-    const int resolution = 170;
+    const int resolution = 230;
 
     std::vector<Ray *> light_paths;
     Plane *plane = NULL;
