@@ -1,5 +1,7 @@
 #include "headers/display.hpp"
 #include <iostream>
+#include <cstdio>
+#include <cstring>
 
 Display::Display()
 {
@@ -56,12 +58,20 @@ void Display::draw(Camera &cam)
         }
         window[y][x] = c;
     }
+    // Use a single buffer to write entire frame at once
+    static char buffer[100000];
+    int pos = 0;
+    
     for (size_t i = 0; i < dim; i++)
     {
         for (size_t j = 0; j < dim; j++)
         {
-            std::cout << window[i][j] << " ";
+            buffer[pos++] = window[i][j];
+            buffer[pos++] = ' ';
         }
-        std::cout << std::endl;
+        buffer[pos++] = '\n';
     }
+    buffer[pos] = '\0';
+    fwrite(buffer, 1, pos, stdout);
+    fflush(stdout);
 }

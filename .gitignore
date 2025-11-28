@@ -1,2 +1,6 @@
 main.dSYM
 main
+build
+.DS_Store
+.vscode
+3d_engine.code-workspace

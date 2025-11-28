@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdint>
 #include "headers/point2d.hpp"
 #include "headers/point3d.hpp"
 #include "headers/ray.hpp"
@@ -6,6 +7,9 @@
 #include "headers/camera.hpp"
 #include "headers/display.hpp"
 #include <memory>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 using namespace std;
 
@@ -36,6 +40,16 @@ static void PrintMemoryUsage()
     std::cout << "Memory Usage: " << (s_AllocationMetrics.CurrentUsage() / 1012) / 1012 << " Mb\n";
 }
 
+void EnableANSIEscapeCodes() {
+    #ifdef _WIN32
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode = 0;
+    GetConsoleMode(hOut, &dwMode);
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, dwMode);
+    #endif
+}
+
 void TestFunc()
 {
     Point3d p1(1, 0, 0);
@@ -62,8 +76,13 @@ void TestFunc()
 
 int main()
 {
-
+    // Enable ANSI escape codes on Windows
+    EnableANSIEscapeCodes();
+    
+    // Hide cursor
     fputs("\e[?25l", stdout);
+    fflush(stdout);
+    
     Scene scene;
     // Scena Podio
     // scene.add_obj(new Sphere(Point3d(0, 0, 1), 0.5));
@@ -120,7 +139,9 @@ int main()
     float t = 0;
     while (t < 20 * 6.28)
     {
+        // Clear screen using ANSI escape codes
         printf("\e[2j\e[H");
+        fflush(stdout);
 
         display.clear();
 
